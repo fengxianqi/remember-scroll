@@ -1,0 +1,34 @@
+{
+  "name": "remember-scroll",
+  "version": "0.0.1",
+  "description": "A plugin to remember element scroll position",
+  "main": "dist/scroll-remember.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-loader": "^8.0.5",
+    "core-js": "^2.6.2",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode=production --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengxianqi/remember-scroll.git"
+  },
+  "keywords": [
+    "remember",
+    "scroll",
+    "position"
+  ],
+  "author": "fengxianqi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fengxianqi/remember-scroll/issues"
+  },
+  "homepage": "https://github.com/fengxianqi/remember-scroll#readme"
+}

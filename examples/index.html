@@ -1,0 +1,23 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>remember-scroll examples</title>
+</head>
+<body>
+  <div id="content"></div>
+  <script src="../dist/remember-scroll.js"></script>
+  <script>
+  window.onload = function () {
+    var content = document.getElementById('content')
+    var str = ''
+    for (var i = 0; i < 200; i++) {
+      str += '<p>'+ i +'</p>'
+    }
+    content.innerHTML = str
+    // use RememberScroll
+    new RememberScroll()
+  }
+
+  </script>
+</body>
+</html>
