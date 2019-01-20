@@ -1,5 +1,8 @@
 # remember-scroll
+English | [中文](https://github.com/fengxianqi/remember-scroll/blob/master/README_ZH-CN.md)
+
 A plugin using localStorage to remember element scroll-position when detached
+
 
 ## Installation
 ```bash
