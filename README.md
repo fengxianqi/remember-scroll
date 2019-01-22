@@ -8,6 +8,12 @@ A plugin using localStorage to remember element scroll-position when detached
 ```bash
 npm install --save remember-scroll
 ```
+CDN
+```html
+<script src="https://cdn.jsdelivr.net/npm/remember-scroll@0.0.1/dist/scroll-remember.min.js"></script>
+```
+You can get the latest version on [jsdelivr.com/npm/remember-scroll](https://www.jsdelivr.com/package/npm/remember-scroll)
+
 ## Usage
 Direct `<script>` Include
 ```html

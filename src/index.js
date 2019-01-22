@@ -34,7 +34,7 @@ class RememberScroll {
         window.addEventListener(
           'pageshow',
           () => {
-            this.scrollTo(currentPage.x, currentPage.y)
+            this.scrollTo(0, currentPage.y)
           },
           false
         )
@@ -47,7 +47,6 @@ class RememberScroll {
   updateScroll (y) {
     const data = {
       pageKey: this.options.pageKey,
-      x: 0, // 只记录y轴，x轴默认为0
       y
     }
     let index = this.list.findIndex(item => item.pageKey === data.pageKey)
