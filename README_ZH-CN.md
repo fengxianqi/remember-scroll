@@ -10,6 +10,9 @@
 
 需要注意的是，最好能为每个不同的页面设置```pageKey```参数，表示该页面的唯一标识。
 
+## 示例
+[examples](https://fengxianqi.github.io/remember-scroll/examples/)
+
 ## 安装
 ```bash
 npm install --save remember-scroll

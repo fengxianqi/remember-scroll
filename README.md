@@ -3,6 +3,8 @@ English | [中文](https://github.com/fengxianqi/remember-scroll/blob/master/REA
 
 A plugin using localStorage to remember element scroll-position when detached
 
+## Demo
+[examples](https://fengxianqi.github.io/remember-scroll/examples/)
 
 ## Installation
 ```bash
