@@ -1,4 +1,9 @@
 # remember-scroll
+[![NPM version](https://img.shields.io/npm/v/remember-scroll.svg)](https://www.npmjs.com/package/remember-scroll)
+[![npm download](https://img.shields.io/npm/dt/remember-scroll.svg?style=flat-square)](https://www.npmjs.com/package/remember-scroll)
+[![jsdelivr](https://data.jsdelivr.com/v1/package/npm/remember-scroll/badge)](https://www.jsdelivr.com/package/npm/remember-scroll)
+[![license](https://img.shields.io/npm/l/remember-scroll.svg?style=flat-square)](https://github.com/fengxianqi/remember-scroll/blob/master/LICENSE)
+
 [English](https://github.com/fengxianqi/remember-scroll) | 中文
 
 
@@ -6,7 +11,7 @@
 
 使用时，将为当前站点记住用户的浏览位置，用户离开或关闭页面后，再次打开该页面时，将自动滚动到上一次离时的浏览位置。
 
-为了防止用户浏览过多页面导致该站点的`localStorage`过大，可以通过```maxLength```设置缓存的最大页面数量，默认值是5，即只记录最多5个页用户最新浏览的页面，。
+为了防止用户浏览过多页面导致该站点的`localStorage`过大，可以通过```maxLength```设置缓存的最大页面数量，默认值是5，即只记录最多5个页用户最新浏览的页面。
 
 需要注意的是，最好能为每个不同的页面设置```pageKey```参数，表示该页面的唯一标识。
 
@@ -15,7 +20,7 @@
 
 ## 安装
 ```bash
-npm install --save remember-scroll
+npm i remember-scroll --save
 ```
 CDN
 ```html
@@ -37,7 +42,6 @@ CDN
       pageKey: 'page1',
       maxLength: 5
     })
-  }
   </script>
 </body>
 </html>
@@ -52,13 +56,13 @@ new RememberScroll()
 ## 选项
 | Name | Type | Default | Description |
 | :--: | :--: | :--: | :--: |
-| pageKey | String | '_page1' | The unique identity of a page |
-| maxLength | Number | 5 | remember the max length of the pages, prevent localStorage too big |
+| pageKey | String | '_page1' | 当前页面的唯一标识 |
+| maxLength | Number | 5 | 记录的最大页面数，防止localstorage占用过大 |
 
 ## 原理
-通过监听```window.onscroll```事件，防抖处理后将用户的```scrollTop ```位置记录在`localStorage`中，生成一条类似这样的记录：
+通过监听```window.onscroll```事件，防抖处理后将用户的```scrollTop ```位置记录在`localStorage`中，存放在`localstorage`中名为`_rememberScroll`变量中：
 ```
 [{pageKey: '_page1',y: 100},{pageKey: '_page2', y: '20'}]
 ```
-在页面初始化时，将读取`localStorage`的值，检查当前页面的`pageKey`是否一致，若一致则将页面的滚动条位置自动滚动到响应的`y`值。
+在页面初始化时，将读取`localStorage`的`_rememberScroll`的值，检查当前页面的`pageKey`是否一致，若一致则将页面的滚动条位置自动滚动到相应的`y`值。
 
