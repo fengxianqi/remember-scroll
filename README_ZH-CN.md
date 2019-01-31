@@ -24,9 +24,9 @@ npm i remember-scroll --save
 ```
 CDN
 ```html
-<script src="https://cdn.jsdelivr.net/npm/remember-scroll@0.0.2/dist/scroll-remember.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/remember-scroll@latest/dist/remember-scroll.min.js"></script>
 ```
-你可以在 [jsdelivr.com/npm/remember-scroll](https://www.jsdelivr.com/package/npm/remember-scroll) 获取到最新的版本
+你可以在 [jsdelivr.com](https://www.jsdelivr.com/package/npm/remember-scroll) 获取到最新的版本。
 ## 使用
 通过 `<script>` 直接使用
 ```html
