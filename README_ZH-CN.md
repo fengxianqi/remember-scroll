@@ -53,6 +53,62 @@ import RememberScroll from 'remember-scroll'
 new RememberScroll()
 ```
 
+在Vue中使用
+```vue
+<template>
+  <div class="normal">
+    <p v-for="item in 100" :key="item">{{ item }}</p>
+  </div>
+</template>
+
+<script>
+import RememberScroll from 'remember-scroll'
+
+export default {
+  name: 'normal',
+  created () {
+    this.rememberScroll = new RememberScroll({
+      pageKey: 'your_page_key'
+    })
+  }
+}
+</script>
+```
+
+如果你的页面数据是异步获取的，可以在异步方法中再初始化`RememberScroll`，比如：
+```vue
+<template>
+  <div class="home">
+    <p v-for="item in ele" :key="item">{{ item }}</p>
+  </div>
+</template>
+
+<script>
+import RememberScroll from 'remember-scroll'
+export default {
+  name: 'home',
+  data () {
+    return {
+      ele: [],
+      rememberScroll: null
+    }
+  },
+  created () {
+    // 模拟异步获取数据，在方法内部初始化RememberScroll
+    setTimeout(() => {
+      for (let i = 0; i < 50; i++) {
+        this.ele.push(i)
+      }
+      // 初始化
+      this.rememberScroll = new RememberScroll({
+        pageKey: 'home'
+      })
+    }, 2000)
+  }
+}
+</script>
+```
+
 ## 选项
 | Name | Type | Default | Description |
 | :--: | :--: | :--: | :--: |

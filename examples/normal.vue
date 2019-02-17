@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="normal">
     <p v-for="item in 100" :key="item">{{ item }}</p>
   </div>
 </template>
@@ -8,10 +8,10 @@
 import RememberScroll from 'remember-scroll'
 
 export default {
-  name: 'about',
+  name: 'normal',
   created () {
     this.rememberScroll = new RememberScroll({
-      pageKey: 'about'
+      pageKey: 'normal'
     })
   }
 }

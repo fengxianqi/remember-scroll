@@ -9,7 +9,7 @@ English | [中文](https://github.com/fengxianqi/remember-scroll/blob/master/REA
 A plugin using localStorage to remember element scroll-position when detached.
 
 ## Demo
-[examples](https://fengxianqi.github.io/remember-scroll/examples/)
+[demo](https://fengxianqi.github.io/remember-scroll/examples/)
 
 ## Installation
 ```bash
@@ -45,6 +45,62 @@ ES6 module
 import RememberScroll from 'remember-scroll'
 
 new RememberScroll()
+```
+
+Use in Vue
+```vue
+<template>
+  <div class="normal">
+    <p v-for="item in 100" :key="item">{{ item }}</p>
+  </div>
+</template>
+
+<script>
+import RememberScroll from 'remember-scroll'
+
+export default {
+  name: 'normal',
+  created () {
+    this.rememberScroll = new RememberScroll({
+      pageKey: 'your_page_key'
+    })
+  }
+}
+</script>
+```
+
+If your page data is async, you can init `RememberScroll` in the async function, such as,
+```vue
+<template>
+  <div class="home">
+    <p v-for="item in ele" :key="item">{{ item }}</p>
+  </div>
+</template>
+
+<script>
+import RememberScroll from 'remember-scroll'
+export default {
+  name: 'home',
+  data () {
+    return {
+      ele: [],
+      rememberScroll: null
+    }
+  },
+  created () {
+    // async get data.
+    setTimeout(() => {
+      for (let i = 0; i < 50; i++) {
+        this.ele.push(i)
+      }
+      // init
+      this.rememberScroll = new RememberScroll({
+        pageKey: 'home'
+      })
+    }, 2000)
+  }
+}
+</script>
 ```
 
 ## Options
