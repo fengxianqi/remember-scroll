@@ -31,13 +31,17 @@ class RememberScroll {
     if (this.list.length) {
       let currentPage = this.list.find(item => item.pageKey === this.options.pageKey)
       if (currentPage) {
-        window.addEventListener(
-          'pageshow',
-          () => {
-            this.scrollTo(0, currentPage.y)
-          },
-          false
-        )
+        setTimeout(() => {
+          this.scrollTo(0, currentPage.y)
+        }, 0)
+
+        // window.addEventListener(
+        //   'pageshow',
+        //   () => {
+        //     this.scrollTo(0, currentPage.y)
+        //   },
+        //   false
+        // )
       }
     }
   }
