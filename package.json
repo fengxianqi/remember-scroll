@@ -5,17 +5,17 @@
   "main": "dist/remember-scroll.min.js",
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.4",
     "babel-loader": "^8.0.5",
-    "core-js": "^2.6.2",
-    "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.1"
+    "core-js": "^2.6.5",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production --colors",
-    "dev": "webpack --mode=development -o dist/remember-scroll.js --colors"
+    "build": "webpack --mode=production -o dist/remember-scroll.min.js --colors",
+    "dev": "webpack --mode=development --colors"
   },
   "repository": {
     "type": "git",
