@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production -o dist/remember-scroll.min.js --colors",
+    "build": "webpack --mode=production -o dist/remember-scroll.min.js --colors && webpack --mode=development --colors",
     "dev": "webpack --mode=development --colors"
   },
   "repository": {
