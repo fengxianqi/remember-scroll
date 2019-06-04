@@ -6,6 +6,7 @@ import Storage from './utils/storage'
 class RememberScroll {
   constructor (options) {
     this.isSupport = Storage.isSupport()
+    // if browser don't support localStorage, do nothing
     if (!this.isSupport) {
       return
     }
