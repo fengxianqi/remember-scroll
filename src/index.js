@@ -65,9 +65,12 @@ class RememberScroll {
     Storage.set(this.storageKey, this.list)
   }
   addScrollEvent () {
-    window.addEventListener('beforeunload', () => {
+    window.addEventListener('scroll', () => {
+      clearTimeout(this.timer)
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-      this.updateScroll(scrollTop)
+      this.timer = setTimeout(() => {
+        this.updateScroll(scrollTop)
+      }, 200)
     })
   }
 }

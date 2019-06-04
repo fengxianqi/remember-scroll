@@ -22,6 +22,14 @@
     content.innerHTML = str
     // use RememberScroll
     new RememberScroll()
+    // test onscroll
+    window.onscroll = function(){
+      console.log('log')
+    }
+    // test addEventListener way
+    window.addEventListener('scroll', function () {
+      console.log('addEventListener log')
+    })
   }
   </script>
 </body>
