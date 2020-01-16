@@ -8,6 +8,8 @@ English | [中文](https://github.com/fengxianqi/remember-scroll/blob/master/REA
 
 A plugin using localStorage to remember element scroll-position when detached.
 
+文章介绍： [用Class写一个记住用户离开位置的js插件](https://www.fengxianqi.com/index.php/archives/132/)
+
 ## Demo
 [demo](https://fengxianqi.github.io/remember-scroll/examples/)
 
