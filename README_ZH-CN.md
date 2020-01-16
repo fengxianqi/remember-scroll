@@ -15,6 +15,8 @@
 
 需要注意的是，最好能为每个不同的页面设置```pageKey```参数，表示该页面的唯一标识。
 
+文章介绍： [用Class写一个记住用户离开位置的js插件](https://www.fengxianqi.com/index.php/archives/132/)
+
 ## 示例
 [demo](https://fengxianqi.github.io/remember-scroll/examples/)
 
