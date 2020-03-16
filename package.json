@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "description": "A plugin to remember element scroll position",
   "main": "dist/remember-scroll.min.js",
+  "sideEffects": false,
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.3.3",
