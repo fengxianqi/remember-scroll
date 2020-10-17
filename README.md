@@ -6,7 +6,8 @@
 
 English | [中文](https://github.com/fengxianqi/remember-scroll/blob/master/README_ZH-CN.md)
 
-A plugin using localStorage to remember element scroll-position when detached.
+A javascript plugin using localStorage to remember element scroll-position, which can auto scrolls to the last visit position when visiting the page again.
+
 
 文章介绍： [用Class写一个记住用户离开位置的js插件](https://www.fengxianqi.com/index.php/archives/132/)
 
