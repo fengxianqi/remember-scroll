@@ -9,7 +9,7 @@ const isProd = process.env.NODE_ENV === 'production'
 export default {
   input: 'src/index.js',
   output: {
-    file: isProd ? 'dist/bundle.min.js' : 'dist/bundle.js',
+    file: isProd ? 'dist/remember-scroll_rollup.min.js' : 'dist/remember-scroll_rollup.js',
     format: 'umd',
     exports: 'default',
     name: 'RememberScroll',

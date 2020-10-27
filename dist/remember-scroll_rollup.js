@@ -587,9 +587,7 @@
 	// import 'core-js/fn/array/find'
 	// import 'core-js/fn/array/find-index'
 
-	var RememberScroll =
-	/*#__PURE__*/
-	function () {
+	var RememberScroll = /*#__PURE__*/function () {
 	  function RememberScroll(options) {
 	    classCallCheck(this, RememberScroll);
 
