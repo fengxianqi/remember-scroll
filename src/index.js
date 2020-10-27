@@ -16,7 +16,7 @@ class RememberScroll {
       pageKey: '_page1', // 当前页面的唯一标识
       maxLength: 5
     }
-    this.storageKey = '_rememberScroll'
+    this.storageKey = '__rememberScroll__'
     // 参数
     this.options = Object.assign({}, defaultOptions, options)
 

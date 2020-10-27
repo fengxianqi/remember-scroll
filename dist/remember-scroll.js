@@ -603,7 +603,7 @@
 	      // 当前页面的唯一标识
 	      maxLength: 5
 	    };
-	    this.storageKey = '_rememberScroll'; // 参数
+	    this.storageKey = '__rememberScroll__'; // 参数
 
 	    this.options = Object.assign({}, defaultOptions, options); // 缓存列表
 
