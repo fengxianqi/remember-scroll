@@ -3,11 +3,12 @@
 [![npm download](https://img.shields.io/npm/dt/remember-scroll.svg?style=flat-square)](https://www.npmjs.com/package/remember-scroll)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/remember-scroll/badge)](https://www.jsdelivr.com/package/npm/remember-scroll)
 [![license](https://img.shields.io/npm/l/remember-scroll.svg?style=flat-square)](https://github.com/fengxianqi/remember-scroll/blob/master/LICENSE)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/remember-scroll?label=gzip)
 
 [English](https://github.com/fengxianqi/remember-scroll) | 中文
 
 
-一个使用`localStorage`来记住页面浏览位置的插件。若当前浏览器不支持`localStorage`，将自动降级插件不生效。
+一个使用`localStorage`来记住页面浏览位置的插件。若当前浏览器不支持`localStorage`，将自动降级插件不生效。gzip后仅3kb。
 
 使用时，将为当前站点记住用户的浏览位置，用户离开或关闭页面后，再次打开该页面时，将自动滚动到上一次离时的浏览位置。
 
@@ -124,3 +125,10 @@ export default {
 ```
 在页面初始化时，将读取`localStorage`的`_rememberScroll`的值，检查当前页面的`pageKey`是否一致，若一致则将页面的滚动条位置自动滚动到相应的`y`值。
 
+## 浏览器支持
+
+本库主要依赖于localStorage。
+
+| Chrome | Edge | Firefox | IE | Opera | Safari |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 42+ ✔ | 12+ ✔ | 41+ ✔ | 9+ ✔ | 29+ ✔ | 10+ ✔ |
