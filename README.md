@@ -3,13 +3,15 @@
 [![npm download](https://img.shields.io/npm/dt/remember-scroll.svg?style=flat-square)](https://www.npmjs.com/package/remember-scroll)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/remember-scroll/badge)](https://www.jsdelivr.com/package/npm/remember-scroll)
 [![license](https://img.shields.io/npm/l/remember-scroll.svg?style=flat-square)](https://github.com/fengxianqi/remember-scroll/blob/master/LICENSE)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/remember-scroll?label=gzip)
 
 English | [中文](https://github.com/fengxianqi/remember-scroll/blob/master/README_ZH-CN.md)
 
-A javascript plugin using localStorage to remember element scroll-position, which can auto scrolls to the last visit position when visiting the page again.
+A javascript plugin using localStorage to remember element scroll-position, which can auto scrolls to the last visit position when visiting the page again. Just 3kb.
 
 
 文章介绍： [用Class写一个记住用户离开位置的js插件](https://www.fengxianqi.com/index.php/archives/132/)
+
 
 ## Demo
 [demo](https://fengxianqi.github.io/remember-scroll/examples/)
@@ -111,3 +113,12 @@ export default {
 | :--: | :--: | :--: | :--: |
 | pageKey | String | '_page1' | A unique identity of the page |
 | maxLength | Number | 5 | The max length of page count, prevent localStorage too big |
+
+
+## Browser Support
+
+This library relies on localStorage.
+
+| Chrome | Edge | Firefox | IE | Opera | Safari |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 42+ ✔ | 12+ ✔ | 41+ ✔ | 9+ ✔ | 29+ ✔ | 10+ ✔ |
