@@ -12,6 +12,7 @@
     "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
+    "conventional-changelog-cli": "^2.1.0",
     "core-js": "^2.6.11",
     "rollup": "^2.32.1",
     "rollup-plugin-filesize": "^9.0.2",
@@ -20,7 +21,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c --environment NODE_ENV:production && rollup -c",
-    "dev": "rollup -c  --watch"
+    "dev": "rollup -c  --watch",
+    "changelog": "conventional-changelog -v",
+    "version": "npm version --no-git-tag-version",
+    "prepublish": "npm run build && npm run verion && npm run changelog && git tag $npm_package_version"
   },
   "repository": {
     "type": "git",
