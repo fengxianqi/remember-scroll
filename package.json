@@ -1,6 +1,6 @@
 {
   "name": "remember-scroll",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "A plugin to remember element scroll position",
   "main": "dist/remember-scroll.js",
   "sideEffects": false,
