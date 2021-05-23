@@ -1,3 +1,20 @@
+## [0.3.1](https://github.com/fengxianqi/remember-scroll/compare/v0.2.0...v0.3.1) (2021-05-23)
+
+
+### Bug Fixes
+
+* findIndex ([17ac4ef](https://github.com/fengxianqi/remember-scroll/commit/17ac4ef089d3fcba0d985f14eb96aa55503e46e9))
+
+
+### Features
+
+* add changelog ([f4d25c5](https://github.com/fengxianqi/remember-scroll/commit/f4d25c5c4e9f06dca4cb6695ca20e5f1fc07d05b))
+* add destory method to removeEventListener ([f9e9227](https://github.com/fengxianqi/remember-scroll/commit/f9e922764a447b7061c73726dae46510f3d4c733))
+* add rollup & babel-transform-runtime ([3ad9303](https://github.com/fengxianqi/remember-scroll/commit/3ad93032c06b082be4f3ecb76a92929f15fd2159))
+* add sideEffect:false ([9771fdc](https://github.com/fengxianqi/remember-scroll/commit/9771fdcadc070d417dceb7f6465351f4c95bd311))
+
+
+
 # [0.3.0](https://github.com/fengxianqi/remember-scroll/compare/v0.2.0...v0.3.0) (2021-05-23)
 
 
