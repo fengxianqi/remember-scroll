@@ -4,6 +4,10 @@
 	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.RememberScroll = factory());
 }(this, (function () { 'use strict';
 
+	function getDefaultExportFromCjs (x) {
+		return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+	}
+
 	function createCommonjsModule(fn, basedir, module) {
 		return module = {
 			path: basedir,
@@ -18,6 +22,42 @@
 		throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
 	}
 
+	var classCallCheck = createCommonjsModule(function (module) {
+	function _classCallCheck(instance, Constructor) {
+	  if (!(instance instanceof Constructor)) {
+	    throw new TypeError("Cannot call a class as a function");
+	  }
+	}
+
+	module.exports = _classCallCheck;
+	module.exports["default"] = module.exports, module.exports.__esModule = true;
+	});
+
+	var _classCallCheck = /*@__PURE__*/getDefaultExportFromCjs(classCallCheck);
+
+	var createClass = createCommonjsModule(function (module) {
+	function _defineProperties(target, props) {
+	  for (var i = 0; i < props.length; i++) {
+	    var descriptor = props[i];
+	    descriptor.enumerable = descriptor.enumerable || false;
+	    descriptor.configurable = true;
+	    if ("value" in descriptor) descriptor.writable = true;
+	    Object.defineProperty(target, descriptor.key, descriptor);
+	  }
+	}
+
+	function _createClass(Constructor, protoProps, staticProps) {
+	  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+	  if (staticProps) _defineProperties(Constructor, staticProps);
+	  return Constructor;
+	}
+
+	module.exports = _createClass;
+	module.exports["default"] = module.exports, module.exports.__esModule = true;
+	});
+
+	var _createClass = /*@__PURE__*/getDefaultExportFromCjs(createClass);
+
 	var _global = createCommonjsModule(function (module) {
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 	var global = module.exports = typeof window != 'undefined' && window.Math == Math
@@ -28,7 +68,7 @@
 	});
 
 	var _core = createCommonjsModule(function (module) {
-	var core = module.exports = { version: '2.6.11' };
+	var core = module.exports = { version: '2.6.12' };
 	if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 	});
 
@@ -80,7 +120,7 @@
 
 	var dP = Object.defineProperty;
 
-	var f = _descriptors ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+	var f$2 = _descriptors ? Object.defineProperty : function defineProperty(O, P, Attributes) {
 	  _anObject(O);
 	  P = _toPrimitive(P, true);
 	  _anObject(Attributes);
@@ -93,7 +133,7 @@
 	};
 
 	var _objectDp = {
-		f: f
+		f: f$2
 	};
 
 	var _propertyDesc = function (bitmap, value) {
@@ -131,8 +171,8 @@
 	  return store[key] || (store[key] = value !== undefined ? value : {});
 	})('versions', []).push({
 	  version: _core.version,
-	  mode:  'global',
-	  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
+	  mode: 'global',
+	  copyright: '© 2020 Denis Pushkarev (zloirock.ru)'
 	});
 	});
 
@@ -253,10 +293,11 @@
 	  return it;
 	};
 
-	// 7.1.13 ToObject(argument)
+	// to indexed object, toObject with fallback for non-array-like ES3 strings
 
-	var _toObject = function (it) {
-	  return Object(_defined(it));
+
+	var _toIobject = function (it) {
+	  return _iobject(_defined(it));
 	};
 
 	// 7.1.4 ToInteger
@@ -268,10 +309,137 @@
 
 	// 7.1.15 ToLength
 
-	var min = Math.min;
+	var min$1 = Math.min;
 	var _toLength = function (it) {
-	  return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+	  return it > 0 ? min$1(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 	};
+
+	var max = Math.max;
+	var min = Math.min;
+	var _toAbsoluteIndex = function (index, length) {
+	  index = _toInteger(index);
+	  return index < 0 ? max(index + length, 0) : min(index, length);
+	};
+
+	// false -> Array#indexOf
+	// true  -> Array#includes
+
+
+
+	var _arrayIncludes = function (IS_INCLUDES) {
+	  return function ($this, el, fromIndex) {
+	    var O = _toIobject($this);
+	    var length = _toLength(O.length);
+	    var index = _toAbsoluteIndex(fromIndex, length);
+	    var value;
+	    // Array#includes uses SameValueZero equality algorithm
+	    // eslint-disable-next-line no-self-compare
+	    if (IS_INCLUDES && el != el) while (length > index) {
+	      value = O[index++];
+	      // eslint-disable-next-line no-self-compare
+	      if (value != value) return true;
+	    // Array#indexOf ignores holes, Array#includes - not
+	    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
+	      if (O[index] === el) return IS_INCLUDES || index || 0;
+	    } return !IS_INCLUDES && -1;
+	  };
+	};
+
+	var shared = _shared('keys');
+
+	var _sharedKey = function (key) {
+	  return shared[key] || (shared[key] = _uid(key));
+	};
+
+	var arrayIndexOf = _arrayIncludes(false);
+	var IE_PROTO = _sharedKey('IE_PROTO');
+
+	var _objectKeysInternal = function (object, names) {
+	  var O = _toIobject(object);
+	  var i = 0;
+	  var result = [];
+	  var key;
+	  for (key in O) if (key != IE_PROTO) _has(O, key) && result.push(key);
+	  // Don't enum bug & hidden keys
+	  while (names.length > i) if (_has(O, key = names[i++])) {
+	    ~arrayIndexOf(result, key) || result.push(key);
+	  }
+	  return result;
+	};
+
+	// IE 8- don't enum bug keys
+	var _enumBugKeys = (
+	  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
+	).split(',');
+
+	// 19.1.2.14 / 15.2.3.14 Object.keys(O)
+
+
+
+	var _objectKeys = Object.keys || function keys(O) {
+	  return _objectKeysInternal(O, _enumBugKeys);
+	};
+
+	var f$1 = Object.getOwnPropertySymbols;
+
+	var _objectGops = {
+		f: f$1
+	};
+
+	var f = {}.propertyIsEnumerable;
+
+	var _objectPie = {
+		f: f
+	};
+
+	// 7.1.13 ToObject(argument)
+
+	var _toObject = function (it) {
+	  return Object(_defined(it));
+	};
+
+	// 19.1.2.1 Object.assign(target, source, ...)
+
+
+
+
+
+
+	var $assign = Object.assign;
+
+	// should work with symbols and should have deterministic property order (V8 bug)
+	var _objectAssign = !$assign || _fails(function () {
+	  var A = {};
+	  var B = {};
+	  // eslint-disable-next-line no-undef
+	  var S = Symbol();
+	  var K = 'abcdefghijklmnopqrst';
+	  A[S] = 7;
+	  K.split('').forEach(function (k) { B[k] = k; });
+	  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+	}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
+	  var T = _toObject(target);
+	  var aLen = arguments.length;
+	  var index = 1;
+	  var getSymbols = _objectGops.f;
+	  var isEnum = _objectPie.f;
+	  while (aLen > index) {
+	    var S = _iobject(arguments[index++]);
+	    var keys = getSymbols ? _objectKeys(S).concat(getSymbols(S)) : _objectKeys(S);
+	    var length = keys.length;
+	    var j = 0;
+	    var key;
+	    while (length > j) {
+	      key = keys[j++];
+	      if (!_descriptors || isEnum.call(S, key)) T[key] = S[key];
+	    }
+	  } return T;
+	} : $assign;
+
+	// 19.1.3.1 Object.assign(target, source)
+
+
+	_export(_export.S + _export.F, 'Object', { assign: _objectAssign });
 
 	// 7.2.2 IsArray(argument)
 
@@ -368,20 +536,6 @@
 	  ArrayProto[UNSCOPABLES][key] = true;
 	};
 
-	// 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
-
-	var $find = _arrayMethods(6);
-	var KEY = 'findIndex';
-	var forced = true;
-	// Shouldn't skip holes
-	if (KEY in []) Array(1)[KEY](function () { forced = false; });
-	_export(_export.P + _export.F * forced, 'Array', {
-	  findIndex: function findIndex(callbackfn /* , that = undefined */) {
-	    return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-	  }
-	});
-	_addToUnscopables(KEY);
-
 	// 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
 
 	var $find$1 = _arrayMethods(5);
@@ -396,159 +550,19 @@
 	});
 	_addToUnscopables(KEY$1);
 
-	// to indexed object, toObject with fallback for non-array-like ES3 strings
+	// 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
 
-
-	var _toIobject = function (it) {
-	  return _iobject(_defined(it));
-	};
-
-	var max = Math.max;
-	var min$1 = Math.min;
-	var _toAbsoluteIndex = function (index, length) {
-	  index = _toInteger(index);
-	  return index < 0 ? max(index + length, 0) : min$1(index, length);
-	};
-
-	// false -> Array#indexOf
-	// true  -> Array#includes
-
-
-
-	var _arrayIncludes = function (IS_INCLUDES) {
-	  return function ($this, el, fromIndex) {
-	    var O = _toIobject($this);
-	    var length = _toLength(O.length);
-	    var index = _toAbsoluteIndex(fromIndex, length);
-	    var value;
-	    // Array#includes uses SameValueZero equality algorithm
-	    // eslint-disable-next-line no-self-compare
-	    if (IS_INCLUDES && el != el) while (length > index) {
-	      value = O[index++];
-	      // eslint-disable-next-line no-self-compare
-	      if (value != value) return true;
-	    // Array#indexOf ignores holes, Array#includes - not
-	    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
-	      if (O[index] === el) return IS_INCLUDES || index || 0;
-	    } return !IS_INCLUDES && -1;
-	  };
-	};
-
-	var shared = _shared('keys');
-
-	var _sharedKey = function (key) {
-	  return shared[key] || (shared[key] = _uid(key));
-	};
-
-	var arrayIndexOf = _arrayIncludes(false);
-	var IE_PROTO = _sharedKey('IE_PROTO');
-
-	var _objectKeysInternal = function (object, names) {
-	  var O = _toIobject(object);
-	  var i = 0;
-	  var result = [];
-	  var key;
-	  for (key in O) if (key != IE_PROTO) _has(O, key) && result.push(key);
-	  // Don't enum bug & hidden keys
-	  while (names.length > i) if (_has(O, key = names[i++])) {
-	    ~arrayIndexOf(result, key) || result.push(key);
+	var $find = _arrayMethods(6);
+	var KEY = 'findIndex';
+	var forced = true;
+	// Shouldn't skip holes
+	if (KEY in []) Array(1)[KEY](function () { forced = false; });
+	_export(_export.P + _export.F * forced, 'Array', {
+	  findIndex: function findIndex(callbackfn /* , that = undefined */) {
+	    return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
 	  }
-	  return result;
-	};
-
-	// IE 8- don't enum bug keys
-	var _enumBugKeys = (
-	  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
-	).split(',');
-
-	// 19.1.2.14 / 15.2.3.14 Object.keys(O)
-
-
-
-	var _objectKeys = Object.keys || function keys(O) {
-	  return _objectKeysInternal(O, _enumBugKeys);
-	};
-
-	var f$1 = Object.getOwnPropertySymbols;
-
-	var _objectGops = {
-		f: f$1
-	};
-
-	var f$2 = {}.propertyIsEnumerable;
-
-	var _objectPie = {
-		f: f$2
-	};
-
-	// 19.1.2.1 Object.assign(target, source, ...)
-
-
-
-
-
-
-	var $assign = Object.assign;
-
-	// should work with symbols and should have deterministic property order (V8 bug)
-	var _objectAssign = !$assign || _fails(function () {
-	  var A = {};
-	  var B = {};
-	  // eslint-disable-next-line no-undef
-	  var S = Symbol();
-	  var K = 'abcdefghijklmnopqrst';
-	  A[S] = 7;
-	  K.split('').forEach(function (k) { B[k] = k; });
-	  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-	}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
-	  var T = _toObject(target);
-	  var aLen = arguments.length;
-	  var index = 1;
-	  var getSymbols = _objectGops.f;
-	  var isEnum = _objectPie.f;
-	  while (aLen > index) {
-	    var S = _iobject(arguments[index++]);
-	    var keys = getSymbols ? _objectKeys(S).concat(getSymbols(S)) : _objectKeys(S);
-	    var length = keys.length;
-	    var j = 0;
-	    var key;
-	    while (length > j) {
-	      key = keys[j++];
-	      if (!_descriptors || isEnum.call(S, key)) T[key] = S[key];
-	    }
-	  } return T;
-	} : $assign;
-
-	// 19.1.3.1 Object.assign(target, source)
-
-
-	_export(_export.S + _export.F, 'Object', { assign: _objectAssign });
-
-	function _classCallCheck(instance, Constructor) {
-	  if (!(instance instanceof Constructor)) {
-	    throw new TypeError("Cannot call a class as a function");
-	  }
-	}
-
-	var classCallCheck = _classCallCheck;
-
-	function _defineProperties(target, props) {
-	  for (var i = 0; i < props.length; i++) {
-	    var descriptor = props[i];
-	    descriptor.enumerable = descriptor.enumerable || false;
-	    descriptor.configurable = true;
-	    if ("value" in descriptor) descriptor.writable = true;
-	    Object.defineProperty(target, descriptor.key, descriptor);
-	  }
-	}
-
-	function _createClass(Constructor, protoProps, staticProps) {
-	  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-	  if (staticProps) _defineProperties(Constructor, staticProps);
-	  return Constructor;
-	}
-
-	var createClass = _createClass;
+	});
+	_addToUnscopables(KEY);
 
 	var Storage = {
 	  isSupport: function isSupport() {
@@ -584,12 +598,29 @@
 	  }
 	};
 
+	function throttle(func, wait) {
+	  var timeout, context, args;
+	  return function () {
+	    context = this;
+	    args = arguments;
+
+	    if (!timeout) {
+	      timeout = setTimeout(function () {
+	        timeout = null;
+	        func.apply(context, args);
+	      }, wait);
+	    }
+	  };
+	}
+
 	// import 'core-js/fn/array/find'
 	// import 'core-js/fn/array/find-index'
 
 	var RememberScroll = /*#__PURE__*/function () {
-	  function RememberScroll(options) {
-	    classCallCheck(this, RememberScroll);
+	  function RememberScroll() {
+	    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+	    _classCallCheck(this, RememberScroll);
 
 	    this.isSupport = Storage.isSupport(); // if browser don't support localStorage, do nothing
 
@@ -603,7 +634,8 @@
 	      // 当前页面的唯一标识
 	      maxLength: 5
 	    };
-	    this.storageKey = '__rememberScroll__'; // 参数
+	    this.storageKey = '__rememberScroll__';
+	    this._eventHandler = null; // 参数
 
 	    this.options = Object.assign({}, defaultOptions, options); // 缓存列表
 
@@ -616,26 +648,22 @@
 	   */
 
 
-	  createClass(RememberScroll, [{
+	  _createClass(RememberScroll, [{
 	    key: "initScroll",
 	    value: function initScroll() {
 	      var _this = this;
 
 	      if (this.list.length) {
-	        var currentPage = this.list.find(function (item) {
+	        var index = this.list.find(function (item) {
 	          return item.pageKey === _this.options.pageKey;
 	        });
 
-	        if (currentPage) {
+	        if (index >= 0) {
 	          setTimeout(function () {
-	            _this.scrollTo(0, currentPage.y);
-	          }, 0); // window.addEventListener(
-	          //   'pageshow',
-	          //   () => {
-	          //     this.scrollTo(0, currentPage.y)
-	          //   },
-	          //   false
-	          // )
+	            _this.scrollTo(0, _this.list[index].y);
+
+	            _this._moveToHead(index);
+	          }, 0);
 	        }
 	      }
 	    }
@@ -646,17 +674,19 @@
 	    }
 	  }, {
 	    key: "updateScroll",
-	    value: function updateScroll(y) {
+	    value: function updateScroll() {
+	      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 	      var data = {
 	        pageKey: this.options.pageKey,
-	        y: y
+	        y: scrollTop
 	      };
 	      var index = this.list.findIndex(function (item) {
 	        return item.pageKey === data.pageKey;
 	      });
 
 	      if (index >= 0) {
-	        this.list.splice(index, 1, data);
+	        this.list.splice(index, 1);
+	        this.list.push(data);
 	      } else {
 	        if (this.list.length >= this.options.maxLength) {
 	          this.list.shift();
@@ -670,15 +700,27 @@
 	  }, {
 	    key: "addScrollEvent",
 	    value: function addScrollEvent() {
-	      var _this2 = this;
+	      this._eventHandler = throttle(this.updateScroll.bind(this), 100);
+	      window.addEventListener('scroll', this._eventHandler);
+	    } // 将当前的一项移到最前面，LRU
 
-	      window.addEventListener('scroll', function () {
-	        clearTimeout(_this2.timer);
-	        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-	        _this2.timer = setTimeout(function () {
-	          _this2.updateScroll(scrollTop);
-	        }, 200);
-	      });
+	  }, {
+	    key: "_moveToHead",
+	    value: function _moveToHead(index) {
+	      // list has no item,
+	      // cannot find item,
+	      // item has been at the end
+	      if (!this.list.length || !this.list[index] || index === this.list.length - 1) {
+	        return;
+	      }
+
+	      var item = this.list.splice(index, 1);
+	      this.list.push(item);
+	    }
+	  }, {
+	    key: "destory",
+	    value: function destory() {
+	      window.removeEventListener('scroll', this._eventHandler);
 	    }
 	  }]);
 

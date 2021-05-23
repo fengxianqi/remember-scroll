@@ -25,6 +25,10 @@ export default {
         pageKey: 'home'
       })
     }, 2000)
+  },
+  beforeDestroy () {
+    // must remove EventListener
+    this.rememberScroll.destory()
   }
 }
 </script>

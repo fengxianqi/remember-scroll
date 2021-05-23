@@ -68,10 +68,19 @@ import RememberScroll from 'remember-scroll'
 
 export default {
   name: 'normal',
-  created () {
+  data () {
+    return {
+      rememberScroll: null
+    }
+  },
+  mounted () {
     this.rememberScroll = new RememberScroll({
       pageKey: 'your_page_key'
     })
+  },
+  beforeDestroy () {
+    // must remove EventListener
+    this.rememberScroll.destory()
   }
 }
 </script>
@@ -95,7 +104,7 @@ export default {
       rememberScroll: null
     }
   },
-  created () {
+  mounted () {
     // async get data.
     setTimeout(() => {
       for (let i = 0; i < 50; i++) {
@@ -106,6 +115,10 @@ export default {
         pageKey: 'home'
       })
     }, 2000)
+  },
+  beforeDestroy () {
+    // must remove EventListener
+    this.rememberScroll.destory()
   }
 }
 </script>
