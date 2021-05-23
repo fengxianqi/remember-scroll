@@ -35,7 +35,7 @@ class RememberScroll {
    */
    initScroll () {
     if (this.list.length) {
-      let index = this.list.find(item => item.pageKey === this.options.pageKey)
+      let index = this.list.findIndex(item => item.pageKey === this.options.pageKey)
       if (index >= 0) {
         setTimeout(() => {
           this.scrollTo(0, this.list[index].y)
@@ -66,7 +66,7 @@ class RememberScroll {
     Storage.set(this.storageKey, this.list)
   }
    addScrollEvent () {
-     this._eventHandler = throttle(this.updateScroll.bind(this), 100)
+    this._eventHandler = throttle(this.updateScroll.bind(this), 100)
      window.addEventListener('scroll', this._eventHandler)
   }
 

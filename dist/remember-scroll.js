@@ -536,20 +536,6 @@
 	  ArrayProto[UNSCOPABLES][key] = true;
 	};
 
-	// 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
-
-	var $find$1 = _arrayMethods(5);
-	var KEY$1 = 'find';
-	var forced$1 = true;
-	// Shouldn't skip holes
-	if (KEY$1 in []) Array(1)[KEY$1](function () { forced$1 = false; });
-	_export(_export.P + _export.F * forced$1, 'Array', {
-	  find: function find(callbackfn /* , that = undefined */) {
-	    return $find$1(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-	  }
-	});
-	_addToUnscopables(KEY$1);
-
 	// 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
 
 	var $find = _arrayMethods(6);
@@ -654,7 +640,7 @@
 	      var _this = this;
 
 	      if (this.list.length) {
-	        var index = this.list.find(function (item) {
+	        var index = this.list.findIndex(function (item) {
 	          return item.pageKey === _this.options.pageKey;
 	        });
 
