@@ -3,6 +3,7 @@ import throttle from './utils/throttle'
 // import 'core-js/fn/object/assign'
 // import 'core-js/fn/array/find'
 // import 'core-js/fn/array/find-index'
+
 class RememberScroll {
   constructor (options = {}) {
     this.isSupport = Storage.isSupport()

@@ -46,6 +46,6 @@
   },
   "homepage": "https://github.com/fengxianqi/remember-scroll#readme",
   "lint-staged": {
-    "*.js": "eslint --cache false --fix"
+    "*.js": "eslint --cache --fix"
   }
 }
