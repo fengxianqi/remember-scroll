@@ -11,9 +11,13 @@
     "@babel/preset-env": "^7.3.4",
     "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-eslint": "^8.0.1",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "conventional-changelog-cli": "^2.1.0",
     "core-js": "^2.6.11",
+    "eslint": "^7.29.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
     "rollup": "^2.32.1",
     "rollup-plugin-filesize": "^9.0.2",
     "rollup-plugin-uglify": "^6.0.4"
@@ -40,5 +44,8 @@
   "bugs": {
     "url": "https://github.com/fengxianqi/remember-scroll/issues"
   },
-  "homepage": "https://github.com/fengxianqi/remember-scroll#readme"
+  "homepage": "https://github.com/fengxianqi/remember-scroll#readme",
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
+  }
 }
