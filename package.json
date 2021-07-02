@@ -17,13 +17,16 @@
     "core-js": "^2.6.11",
     "eslint": "^7.29.0",
     "husky": "^6.0.0",
+    "jest": "^27.0.6",
+    "jest-puppeteer": "^5.0.4",
     "lint-staged": "^11.0.0",
+    "puppeteer": "^10.1.0",
     "rollup": "^2.32.1",
     "rollup-plugin-filesize": "^9.0.2",
     "rollup-plugin-uglify": "^6.0.4"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "rollup -c --environment NODE_ENV:production && rollup -c",
     "dev": "rollup -c  --watch",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
