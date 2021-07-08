@@ -3,6 +3,8 @@ import babel from '@rollup/plugin-babel'
 import resolve from '@rollup/plugin-node-resolve'
 import { uglify } from 'rollup-plugin-uglify'
 import commonjs from '@rollup/plugin-commonjs'
+import eslint from '@rollup/plugin-eslint'
+
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -15,6 +17,12 @@ export default {
     name: 'RememberScroll',
   },
   plugins: [
+    eslint({
+      throwOnError: true,
+      throwOnWarning: true,
+      include: ['src/**'],
+      exclude: ['node_modules/**']
+    }),
     resolve(),
     commonjs(),
     filesize(),

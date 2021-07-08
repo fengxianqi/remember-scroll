@@ -1,37 +1,22 @@
 module.exports = {
-  "env": {
-      "browser": true,
-      "commonjs": true,
-      "es6": true
-  },
-  "extends": "eslint:recommended",
-  "parserOptions": {
-      "ecmaVersion": 2015,
-      "sourceType": "module"
-  },
-  "rules": {
-      "indent": [
-          "error",
-          2
-      ],
-      "linebreak-style": [
-          "error",
-          "unix"
-      ],
-      "quotes": [
-          "error",
-          "single"
-      ],
-      "semi": [
-          "error",
-          "never"
-      ],
-      "space-before-function-paren": ["error", "always"],
-      "max-len": ["error", {"code": 200}],
-      "no-console": "off"
-  },
-  globals: {
-    "process": true,
-    "__dirname": true
-  }
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node":true,
+        "jest": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "rules": {
+    },
+    globals: {
+      "process": true,
+      "__dirname": true,
+      "module": true,
+      "page": true,
+      "browser": true
+    }
 };

@@ -9,3 +9,4 @@
 - [ ] 增加单元测试
 - [ ] 引入changelog：cz-conventional-changelog
 - [ ] 使用travis-ci
+- [ ] 使用typescript重构

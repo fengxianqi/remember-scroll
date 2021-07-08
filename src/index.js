@@ -11,7 +11,7 @@ class RememberScroll {
     if (!this.isSupport) {
       return
     }
-    this.timer = null
+    // this.timer = null
 
     let defaultOptions = {
       pageKey: '_page1', // 当前页面的唯一标识
@@ -33,7 +33,7 @@ class RememberScroll {
   /**
    * 初始化滚动条
    */
-   initScroll () {
+  initScroll () {
     if (this.list.length) {
       let index = this.list.findIndex(item => item.pageKey === this.options.pageKey)
       if (index >= 0) {
@@ -44,10 +44,10 @@ class RememberScroll {
       }
     }
   }
-   scrollTo (x, y) {
+  scrollTo (x, y) {
     window.scrollTo(x, y)
   }
-   updateScroll () {
+  updateScroll () {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
     const data = {
       pageKey: this.options.pageKey,
@@ -65,13 +65,13 @@ class RememberScroll {
     }
     Storage.set(this.storageKey, this.list)
   }
-   addScrollEvent () {
+  addScrollEvent () {
     this._eventHandler = throttle(this.updateScroll.bind(this), 100)
-     window.addEventListener('scroll', this._eventHandler)
+    window.addEventListener('scroll', this._eventHandler)
   }
 
   // 将当前的一项移到最前面，LRU
-   _moveToHead(index){
+  _moveToHead (index){
     // list has no item,
     // cannot find item,
     // item has been at the end
@@ -82,7 +82,7 @@ class RememberScroll {
     this.list.push(item)
   }
 
-  destory(){
+  destory (){
     window.removeEventListener('scroll', this._eventHandler)
   }
 }

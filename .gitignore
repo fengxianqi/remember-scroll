@@ -27,4 +27,4 @@ bower_components
 vendor
 temp
 temp
-package-lock.json
+.eslintcache

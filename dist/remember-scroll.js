@@ -612,9 +612,9 @@
 
 	    if (!this.isSupport) {
 	      return;
-	    }
+	    } // this.timer = null
 
-	    this.timer = null;
+
 	    var defaultOptions = {
 	      pageKey: '_page1',
 	      // 当前页面的唯一标识
