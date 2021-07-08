@@ -4,6 +4,7 @@
 [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/remember-scroll/badge)](https://www.jsdelivr.com/package/npm/remember-scroll)
 [![license](https://img.shields.io/npm/l/remember-scroll.svg?style=flat-square)](https://github.com/fengxianqi/remember-scroll/blob/master/LICENSE)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/remember-scroll?label=gzip)
+[![Actions Status](https://github.com/fengxianqi/remember-scroll/actions/workflows/node.js.yml/badge.svg)](https://github.com/fengxianqi/remember-scroll/actions)
 
 English | [中文](https://github.com/fengxianqi/remember-scroll/blob/master/README_ZH-CN.md)
 
